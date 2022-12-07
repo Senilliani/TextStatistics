@@ -15,8 +15,8 @@ namespace TextStatistics
             mayores y menores atendiendo a la tabla ASCII * También
             almacena el número de ellos que son mayúsculas
             */
-            char minLetra = Char.MinValue;
-            char maxLetra = Char.MaxValue;
+            char minLetra = Char.MaxValue;
+            char maxLetra = Char.MinValue;
             int numMayusculas = 0;
             bool salir = false;
             while (!salir)
@@ -28,19 +28,25 @@ namespace TextStatistics
                 Console.WriteLine("-------");
                 if (letraAux == '0')
                     salir = true;
-                //almaceno los menores y mayores.
-                if (minLetra > letraAux)
-                    minLetra = letraAux;
-                if (maxLetra < letraAux)
-                    maxLetra = letraAux;
-                //Si la letra es mayusculas la contabiliza
-                //
-                if ((letraAux > 'A') && (letraAux < 'Z'))
-                    numMayusculas++;
+                else
+                {
+                    if ((letraAux >= 'a' && letraAux <= 'z') || (letraAux >= 'A' && letraAux <= 'Z'))
+                    {
+                        //almaceno los menores y mayores.
+                        if (minLetra > letraAux)
+                            minLetra = letraAux;
+                        if (maxLetra < letraAux)
+                            maxLetra = letraAux;
+                        //Si la letra es mayusculas la contabiliza
+                        //
+                        if ((letraAux >= 'A') && (letraAux <= 'Z'))
+                            numMayusculas++;
+                    }
+                }
             }
             //Escribe el resultado
-            Console.WriteLine("el Char menor es : " + maxLetra);
-            Console.WriteLine("el Char mayor es : " + minLetra);
+            Console.WriteLine("el Char menor es : " + minLetra);
+            Console.WriteLine("el Char mayor es : " + maxLetra);
             Console.WriteLine("Hay " + numMayusculas + " letras mayusculas ");
             Console.ReadKey();
         }
